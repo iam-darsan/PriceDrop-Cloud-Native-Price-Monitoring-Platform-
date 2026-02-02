@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pricedrop-celery-beat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pricedrop-celery-beat
+  template:
+    metadata:
+      labels:
+        app: pricedrop-celery-beat
+    spec:
+      containers:
+        - name: celery-beat
+          image: <AWS_ACCOUNT_ID>.dkr.ecr.<YOUR-AWS-REGION>.amazonaws.com/<ECR_REPOSITORY>:latest
+          command: ["celery"]
+          args:
+            - "-A"
+            - "app.tasks.celery_app"
+            - "beat"
+            - "--loglevel=info"
+          envFrom:
+            - secretRef:
+                name: backend-secrets

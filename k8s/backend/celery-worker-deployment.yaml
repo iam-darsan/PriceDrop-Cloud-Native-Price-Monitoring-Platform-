@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pricedrop-celery-worker
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pricedrop-celery-worker
+  template:
+    metadata:
+      labels:
+        app: pricedrop-celery-worker
+    spec:
+      containers:
+        - name: celery-worker
+          image: <AWS_ACCOUNT_ID>.dkr.ecr.<YOUR-AWS-REGION>.amazonaws.com/<ECR_REPOSITORY>:latest
+          command: ["celery"]
+          args:
+            - "-A"
+            - "app.tasks.celery_app"
+            - "worker"
+            - "--loglevel=info"
+          envFrom:
+            - secretRef:
+                name: backend-secrets
