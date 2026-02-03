@@ -4,7 +4,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
 ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white)
 ![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
@@ -86,44 +86,44 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         AWS Cloud                                │
-│                                                                   │
+│                         AWS Cloud                               │
+│                                                                 │
 │  ┌────────────────────────────────────────────────────────────┐ │
-│  │                    Amazon S3                                │ │
-│  │              (Frontend Static Hosting)                      │ │
+│  │                    Amazon S3                               │ │
+│  │              (Frontend Static Hosting)                     │ │
 │  └────────────────────────────────────────────────────────────┘ │
-│                              │                                   │
-│                              ▼                                   │
+│                              │                                  │
+│                              ▼                                  │
 │  ┌────────────────────────────────────────────────────────────┐ │
-│  │                      AWS EKS Cluster                        │ │
-│  │                                                              │ │
+│  │                      AWS EKS Cluster                       │ │
+│  │                                                            │ │
 │  │  ┌──────────────┐     ┌──────────────┐                     │ │
-│  │  │   Ingress    │────▶│   Backend    │                     │ │
+│  │  │   Ingress    │────▶│   Backend    │                    │ │
 │  │  │ (NGINX/ALB)  │     │   (FastAPI)  │                     │ │
 │  │  └──────────────┘     └──────┬───────┘                     │ │
-│  │                              │                               │ │
+│  │                              │                             │ │
 │  │  ┌──────────────┐     ┌──────▼───────┐                     │ │
 │  │  │Celery Worker │     │ Celery Beat  │                     │ │
 │  │  │(Price Check) │     │ (Scheduler)  │                     │ │
 │  │  └──────┬───────┘     └──────────────┘                     │ │
-│  │         │                                                    │ │
-│  └─────────┼────────────────────────────────────────────────── │ │
-│            │                                                     │
+│  │         │                                                  │ │
+│  └─────────┼──────────────────────────────────────────────────│ │
+│            │                                                    │
 │  ┌─────────▼──────────────────────────────────────────────────┐ │
-│  │                    ElastiCache Redis                        │ │
-│  │              (Task Queue & Caching)                         │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-│                                                                   │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │                         RDS PostgreSQL                       │ │
-│  │         (Users, Products, Alerts, Price History)            │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-│                                                                   │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │                     Amazon ECR                               │ │
-│  │              (Container Image Registry)                      │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-└───────────────────────────────────────────────────────────────────┘
+│  │                    ElastiCache Redis                       │ │
+│  │              (Task Queue & Caching)                        │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                         RDS MySQL                           ││
+│  │         (Users, Products, Alerts, Price History)            ││
+│  └─────────────────────────────────────────────────────────────┘│
+│                                                                 │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                     Amazon ECR                              ││
+│  │              (Container Image Registry)                     ││
+│  └─────────────────────────────────────────────────────────────┘│
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ### Component Interaction Flow
